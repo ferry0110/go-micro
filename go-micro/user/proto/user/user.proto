@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "./proto;user";
+
+service User{
+  //注册
+  rpc Register (UserRegisterRequest) returns (UserRegisterResponse) {}
+  //登陆
+  rpc Login (UserLoginRequest) returns (UserLoginResponse) {}
+  //查询用户信息
+  rpc GetUserInfo (UserInfoRequest) returns (UserInfoResponse) {}
+}
+
+message UserRegisterRequest{
+  string userName = 1;
+  string firstName = 2;
+  string password = 3;
+}
+
+message UserRegisterResponse{
+  string message = 1;
+}
+
+message UserLoginRequest{
+  string userName = 1;
+  string password = 2;
+}
+
+message UserLoginResponse{
+  bool  isSuccessful = 1;
+}
+
+message UserInfoRequest{
+  string  userName = 1;
+}
+
+message UserInfoResponse{
+  int64  userId = 1;
+  string userName = 2;
+  string firstName = 3;
+}
